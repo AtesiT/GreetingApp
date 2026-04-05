@@ -1,36 +1,33 @@
 import UIKit
 
-//  Шаг 1
-protocol GreetingViewProtocol: AnyObject {
-    func setGreeting(_ greeting: String)
-}
-
 final class GreetingViewController: UIViewController {
 
     @IBOutlet var greetingLabel: UILabel!
     
-    //  Шаг 5
-    //  Тип ссылки - тип публичного интерфейса (этот паттерн предполагает работу через интерфейсы, мы не должны работать через классы). Тем самым код становится модульным (независимые блоки).
-    private var presenter: GreetingPresenterProtocol!
+    //  Шаг 4
+    //  Нам нужно взаимоувязать сам ViewController с его моделью представления (ему необходимо знать про модель)
+    //  Посредством интерфейса происходит общение
+    private var viewModel: GreetingViewModelProtocol! {
+        //  Как только будет менять своё состояние, мы будем вызывать callback
+        didSet {
+            viewModel.greetingDidChange = { [unowned self] viewModel in
+                greetingLabel.text = viewModel.greeting
+            }
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //  Шаг 6
+        //  Шаг 5
+        //  Делаем инициализацию
         let person = Person(name: "Tim", surname: "Cook")
-        presenter = GreetingPresenter(view: self, person: person)
+        viewModel = GreetingViewModel(person: person)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
-        //  Шаг 7
-        presenter.showGreeting()
-    }
-
-}
-
-//  Шаг 2
-extension GreetingViewController: GreetingViewProtocol {
-    func setGreeting(_ greeting: String) {
-        greetingLabel.text = greeting
+        //  Шаг 6
+        //  Вызываем нам метод по нажатию на экран
+        viewModel.showGreeting()
     }
 }

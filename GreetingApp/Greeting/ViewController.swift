@@ -1,5 +1,9 @@
 import UIKit
 
+protocol GreetingViewInputProtocol {
+    func setGreeting(_ greeting: String)
+}
+
 final class ViewController: UIViewController {
 
     @IBOutlet var greetingLabel: UILabel!
@@ -8,7 +12,7 @@ final class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        person = Person(name: "Timc", surname: "Cook")
+        person = Person(name: "Tim", surname: "Cook")
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -18,3 +22,9 @@ final class ViewController: UIViewController {
 
 }
 
+//  MARK: - GreetingViewInputProtocol
+extension ViewController: GreetingViewInputProtocol {
+    func setGreeting(_ greeting: String) {
+        greetingLabel.text = greeting
+    }
+}

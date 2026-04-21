@@ -1,7 +1,12 @@
 import UIKit
 
-protocol GreetingViewInputProtocol {
+protocol GreetingViewInputProtocol: AnyObject {
     func setGreeting(_ greeting: String)
+}
+
+protocol GreetingViewOutputProtocol {
+    init(view: GreetingViewInputProtocol)
+    func didTapShowGreetingButton()
 }
 
 final class ViewController: UIViewController {

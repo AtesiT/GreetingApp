@@ -1,14 +1,14 @@
-import Foundation
-
-protocol GreetingConfiguratorInputProtocol {
-    func configure(withView view: ViewController)
-}
-
-class GreetingConfigurator: GreetingConfiguratorInputProtocol {
-    func configure(withView view: ViewController) {
-        let presenter = GreetingPresenter(view: view)
-        let interactor = GreetingInteractor(presenter: presenter)
-        view.presenter = presenter
-        presenter.interactor = interactor
+class GreetingConfigurator {
+    static let shared = GreetingConfigurator()
+    
+    private init() {}
+    
+    func configure(with viewController: GreetingViewController) {
+        let interactor = GreetingInteractor()
+        let presenter = GreetingPresenter()
+        
+        viewController.interactor = interactor
+        interactor.presenter = presenter
+        presenter.viewController = viewController
     }
 }

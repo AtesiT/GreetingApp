@@ -1,27 +1,20 @@
-import Foundation
-
-protocol GreetingInteractorInputProtocol {
-    init(presenter: GreetingInteractorOutputProtocol)
-    func provideGreetingData()
+protocol GreetingBusinessLogic {
+    func showGreeting(request: GreetingRequest)
 }
 
-protocol GreetingInteractorOutputProtocol: AnyObject {
-    func receiveGreetingData(greetingData: GreetingData)
+protocol GreetingDataStore {
+    //  Здесь хранятся все свойства, которые необходимы для хрвнения состояния сцены (хранения данных)
+    var person: Person? { get }
 }
 
-class GreetingInteractor: GreetingInteractorInputProtocol {
-    unowned private let presenter: GreetingInteractorOutputProtocol
+class GreetingInteractor: GreetingBusinessLogic, GreetingDataStore {
     
-    required init(presenter: any GreetingInteractorOutputProtocol) {
-        self.presenter = presenter
+    var presenter: GreetingPresentationLogic?
+    var person: Person?
+    
+    func showGreeting(request: GreetingRequest) {
+        person = Person(name: "Tim", surname: "Cook")
+        let response = Greeting.ShowGreeting.Response(name: person?.name ?? "", surname: person?.surname ?? "")
+        presenter?.presentGreeting(response: response)
     }
-    
-    func provideGreetingData() {
-        let person = Person(name: "Tim", surname: "Cook")
-        let greetingData = GreetingData(name: person.name, surname: person.surname)
-        presenter.receiveGreetingData(greetingData: greetingData)
-        
-    }
-    
-    
 }

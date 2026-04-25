@@ -1,27 +1,14 @@
-import Foundation
-
-//  Слой содержит структуру, которая будет хранить состояние всего модуля
-struct GreetingData {
-    let name: String
-    let surname: String
+protocol GreetingPresentationLogic {
+    func presentGreeting(response: GreetingResponse)
 }
 
-class GreetingPresenter: GreetingViewOutputProtocol {
-    unowned private let view: GreetingViewInputProtocol
-    var interactor: GreetingInteractorInputProtocol!
+class GreetingPresenter: GreetingPresentationLogic {
     
-    required init(view: any GreetingViewInputProtocol) {
-        self.view = view
-    }
+    weak var viewController: GreetingDisplayLogic?
     
-    func didTapShowGreetingButton() {
-        interactor.provideGreetingData()
-    }
-}
-
-extension GreetingPresenter: GreetingInteractorOutputProtocol {
-    func receiveGreetingData(greetingData: GreetingData) {
-        let greeting = "Hello, \(greetingData.name) \(greetingData.surname)"
-        view.setGreeting(greeting)
+    func presentGreeting(response: GreetingResponse) {
+        let greeting = "Hello, \(response.name) \(response.surname)!"
+        let viewModel = GreetingViewModel(greeting: greeting)
+        viewController?.displayGreeting(viewModel: viewModel)
     }
 }

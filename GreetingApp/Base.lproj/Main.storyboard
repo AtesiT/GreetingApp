@@ -16,22 +16,39 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap to the Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-Ut-e6l">
-                                <rect key="frame" x="103.66666666666669" y="415.66666666666669" width="186" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="7" translatesAutoresizingMaskIntoConstraints="NO" id="EPH-rn-irN">
+                                <rect key="frame" x="103.66666666666667" y="395.33333333333331" width="185.66666666666663" height="61.666666666666686"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please tap to the Screen" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8MY-Ut-e6l">
+                                        <rect key="frame" x="0.0" y="0.0" width="185.66666666666666" height="20.333333333333332"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cVa-7d-nV5">
+                                        <rect key="frame" x="55.333333333333329" y="27.333333333333375" width="74.999999999999986" height="34.333333333333343"/>
+                                        <state key="normal" title="Button"/>
+                                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                                        <connections>
+                                            <action selector="showGreetingPressed" destination="BYZ-38-t0r" eventType="touchUpInside" id="d5e-Bw-J3V"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="8MY-Ut-e6l" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="SPg-83-3MQ"/>
-                            <constraint firstItem="8MY-Ut-e6l" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="pcd-8n-OXG"/>
+                            <constraint firstItem="EPH-rn-irN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="H7P-XV-jF0"/>
+                            <constraint firstItem="EPH-rn-irN" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="fAy-bN-5Rz"/>
                         </constraints>
                     </view>
                     <connections>
+<<<<<<< HEAD
                         <outlet property="greetingLabel" destination="8MY-Ut-e6l" id="IZF-pP-6c6"/>
+=======
+                        <outlet property="greetingLabel" destination="8MY-Ut-e6l" id="Jvb-eB-Ed9"/>
+>>>>>>> CleanSwift
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

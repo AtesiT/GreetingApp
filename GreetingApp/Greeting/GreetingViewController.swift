@@ -13,11 +13,12 @@ class GreetingViewController: UIViewController {
     // MARK: View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        GreetingConfigurator.shared.configure(with: self)
     }
         
     @IBAction func showGreetingPressed() {
         let request = GreetingRequest()
-        interactor?.doSomething(request: request)
+        interactor?.showGreeting(request: request)
     }
 }
 

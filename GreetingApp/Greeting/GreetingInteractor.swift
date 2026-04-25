@@ -1,21 +1,20 @@
 protocol GreetingBusinessLogic {
-    func doSomething(request: Greeting.ShowGreeting.Request)
+    func showGreeting(request: GreetingRequest)
 }
 
 protocol GreetingDataStore {
-    
+    //  Здесь хранятся все свойства, которые необходимы для хрвнения состояния сцены (хранения данных)
+    var person: Person? { get }
 }
 
 class GreetingInteractor: GreetingBusinessLogic, GreetingDataStore {
     
     var presenter: GreetingPresentationLogic?
-    var worker: GreetingWorker?
+    var person: Person?
     
-    func doSomething(request: Greeting.ShowGreeting.Request) {
-        worker = GreetingWorker()
-        worker?.doSomeWork()
-        
-        let response = Greeting.ShowGreeting.Response()
-        presenter?.presentSomething(response: response)
+    func showGreeting(request: GreetingRequest) {
+        person = Person(name: "Tim", surname: "Cook")
+        let response = Greeting.ShowGreeting.Response(name: person?.name ?? "", surname: person?.surname ?? "")
+        presenter?.presentGreeting(response: response)
     }
 }

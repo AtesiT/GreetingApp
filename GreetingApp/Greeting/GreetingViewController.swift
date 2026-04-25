@@ -1,7 +1,7 @@
 import UIKit
 
 protocol GreetingDisplayLogic: AnyObject {
-    func displaySomething(viewModel: Greeting.Something.ViewModel)
+    func displaySomething(viewModel: Greeting.ShowGreeting.ViewModel)
 }
 
 class GreetingViewController: UIViewController {
@@ -43,7 +43,7 @@ class GreetingViewController: UIViewController {
     }
     
     private func doSomething() {
-        let request = Greeting.Something.Request()
+        let request = Greeting.ShowGreeting.Request()
         interactor?.doSomething(request: request)
     }
     
@@ -63,7 +63,7 @@ class GreetingViewController: UIViewController {
 }
 
 extension GreetingViewController: GreetingDisplayLogic {
-    func displaySomething(viewModel: Greeting.Something.ViewModel) {
+    func displaySomething(viewModel: Greeting.ShowGreeting.ViewModel) {
         
     }
 }
